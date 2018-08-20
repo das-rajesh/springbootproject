@@ -1,4 +1,0 @@
-com\heroku\web\AppStarter.class
-com\heroku\web\controller\DefaultController.class
-com\heroku\web\entity\repository\ColorRepository.class
-com\heroku\web\entity\Color.class
