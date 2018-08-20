@@ -7,12 +7,7 @@ package com.heroku.web.controller;
 
 import com.heroku.web.entity.Color;
 import com.heroku.web.entity.repository.ColorRepository;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,7 +29,7 @@ public class DefaultController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
-    
+
         model.addAttribute("colors", colorRepository.findAll());
         return "index";
     }
@@ -44,23 +39,22 @@ public class DefaultController {
     public String about() {
         return "<h1> About us </h1>";
     }
-    
+
     @RequestMapping(method = RequestMethod.POST)
-    public String save(@ModelAttribute("Color")Color color){
+    public String save(@ModelAttribute("Color") Color color) {
         colorRepository.save(color);
         return "redirect:/";
     }
-    
-    @RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
-    public String edit(@PathVariable("id")long id, Model model){
-        
-          model.addAttribute("color",colorRepository.findById(id).get());
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable("id") long id, Model model) {
+
+        model.addAttribute("color", colorRepository.findById(id).get());
         return "index";
     }
-    
-    
-    @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
-    public String delete(@PathVariable("id")long id){
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id") long id) {
         colorRepository.deleteById(id);
         return "redirect:/";
     }
